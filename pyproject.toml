@@ -1,0 +1,11 @@
+[project]
+name = "cv-optimiser"
+version = "1.0.0"
+requires-python = ">= 3.14.4"
+authors = [
+  {name = "Matt Worrall", email = "matt@lotuselise.org.uk"}
+]
+dynamic = ["dependencies"]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
