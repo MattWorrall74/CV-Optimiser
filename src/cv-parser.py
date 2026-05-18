@@ -7,8 +7,8 @@ import requests
 load_dotenv()
 
 # Grab the required environment variables
-CV_INPUT_FOLDER = os.getenv('CV_INPUT_FOLDER')
-CV_OUTPUT_FOLDER = os.getenv('CV_OUTPUT_FOLDER')
+CV_PDF_FOLDER = os.getenv('CV_PDF_FOLDER')
+CV_MD_FOLDER = os.getenv('CV_MD_FOLDER')
 NANONETS_API_KEY = os.getenv('NANONETS_API_KEY')
 NANONETS_API_URL = os.getenv('NANONETS_API_URL')
 
@@ -22,7 +22,7 @@ def parse_pdf_to_markdown(input_folder, output_folder):
     """
     # Validate that folders are specified
     if not input_folder or not output_folder:
-        raise ValueError("CV_INPUT_FOLDER and CV_OUTPUT_FOLDER environment variables must be set")
+        raise ValueError("CV_PDF_FOLDER and CV_MD_FOLDER environment variables must be set")
     
     # Create Path objects
     input_path = Path(input_folder)
@@ -80,7 +80,7 @@ def parse_pdf_to_markdown(input_folder, output_folder):
 
 if __name__ == "__main__":
     try:
-        parse_pdf_to_markdown(CV_INPUT_FOLDER, CV_OUTPUT_FOLDER)
+        parse_pdf_to_markdown(CV_PDF_FOLDER, CV_MD_FOLDER)
     except Exception as e:
         print(f"Error: {e}")
 

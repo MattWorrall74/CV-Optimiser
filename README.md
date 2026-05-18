@@ -1,6 +1,6 @@
-# CV Optimiser
+# CV Converter
 
-Uses Gemini CLI to compare a job description from a vacancy to a supplied set of CVs, then determine the best CV to use as a base, with exact revisions to align it to the vacancy.
+Converts CVs in PDF format into Markdown format for providing to LLMs.
 
 ## Setup
 
@@ -34,3 +34,10 @@ Finally, install the project dependencies:
 ```bash
 pip install -r requirements.txt
 ```
+
+## Usage
+
+There are two Python scripts in the `src` folder:
+
+- `cv-parser.py` uses the [Nanonets PDF to Markdown API](https://tools.nanonets.com/pdf-to-markdown) to convert all PDF files specified in `CV_PDF_FOLDER` into structured Markdown documents, outputted to the folder specified in `CV_MD_FOLDER`. Note that the parser isn't fool-proof; I recommend checking each converted file.
+- `markdown-concatanator.py` concatanates all Markdown documents found in `CV_MD_FOLDER` into a single Markdown document. The source filename is included with each document in the concatanated file. This provides an efficient single document to provide to an LLM.
