@@ -7,6 +7,7 @@ load_dotenv()
 
 # Grab the required environment variables
 CV_MD_FOLDER = os.getenv('CV_MD_FOLDER')
+COMBINED_CV_FILE = os.getenv('COMBINED_CV_FILE')
 
 def concatenate_markdown_files(input_folder, output_file):
     """
@@ -28,8 +29,8 @@ def concatenate_markdown_files(input_folder, output_file):
     if not input_path.exists():
         raise FileNotFoundError(f"Input folder not found: {input_folder}")
     
-    # Find all Markdown files in the input folder
-    md_files = list(input_path.glob("*.md"))
+    # Find all Markdown files in the input folder, excluding the output file if it lives there
+    md_files = [md for md in input_path.glob("*.md") if md.name != output_file]
     
     if not md_files:
         print(f"No Markdown files found in {input_folder}")
@@ -47,6 +48,6 @@ def concatenate_markdown_files(input_folder, output_file):
 
 if __name__ == "__main__":
     try:
-        concatenate_markdown_files(CV_MD_FOLDER, "combined_cv.md")
+        concatenate_markdown_files(CV_MD_FOLDER, COMBINED_CV_FILE)
     except Exception as e:
         print(f"Error: {e}")
