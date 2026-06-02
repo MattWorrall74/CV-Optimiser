@@ -61,7 +61,7 @@ def parse_pdf_to_markdown(input_folder, output_folder):
 
             response = requests.post(NANONETS_API_URL, 
                 files={ 'file': open(pdf_file, 'rb') },
-                data={'output_type': 'markdown'},
+                data={'output_format': 'markdown'},
                 headers=headers
             )
 
@@ -69,7 +69,7 @@ def parse_pdf_to_markdown(input_folder, output_folder):
             
             # Write markdown content to output file
             response_json = response.json()
-            output_file.write_text(response_json["content"], encoding="utf-8")
+            output_file.write_text(response_json["result"]["markdown"]["content"], encoding="utf-8")
             print(f"✓ Converted to: {output_file.name}")
             
         except Exception as e:
